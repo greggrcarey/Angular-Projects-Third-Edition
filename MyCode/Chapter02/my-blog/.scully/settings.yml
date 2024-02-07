@@ -1,0 +1,10 @@
+identifier: lfs1cb71ze23rbm0
+appPort: 1864
+staticPort: 1668
+reloadPort: 2667
+hostName: localhost
+projectName: my-blog
+homeFolder: D:\Angular-Projects-Third-Edition\MyCode\Chapter02\my-blog
+distFolder: dist/my-blog
+outDir: D:\Angular-Projects-Third-Edition\MyCode\Chapter02\my-blog\dist\static
+handle404: ''
