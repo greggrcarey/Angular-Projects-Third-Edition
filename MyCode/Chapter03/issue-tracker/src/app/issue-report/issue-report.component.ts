@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { IssueForm } from '../issue-form';
 import { Issue } from '../issue';
@@ -9,6 +9,7 @@ import { IssuesService } from '../issues.service';
   templateUrl: './issue-report.component.html',
   styleUrl: './issue-report.component.css'
 })
+
 export class IssueReportComponent {
 
   issueForm = new FormGroup<IssueForm>({
@@ -18,10 +19,13 @@ export class IssueReportComponent {
     type: new FormControl('', { nonNullable: true }),
   });
 
+  @Output() formClose = new EventEmitter();
+
   constructor(private issueService: IssuesService) { }
 
   addIssue() {
     this.issueService.creatIssue(this.issueForm.getRawValue() as Issue);
+    this.formClose.emit();
   }
 
 }
