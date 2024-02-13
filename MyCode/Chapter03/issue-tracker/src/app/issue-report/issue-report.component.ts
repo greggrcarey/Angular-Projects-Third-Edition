@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IssueForm } from '../issue-form';
 import { Issue } from '../issue';
@@ -10,7 +10,9 @@ import { IssuesService } from '../issues.service';
   styleUrl: './issue-report.component.css'
 })
 
-export class IssueReportComponent {
+export class IssueReportComponent implements OnInit {
+
+  suggestions: Issue[] = [];
 
   issueForm = new FormGroup<IssueForm>({
     title: new FormControl('', { nonNullable: true, validators: Validators.required }),
@@ -30,6 +32,12 @@ export class IssueReportComponent {
     }
     this.issueService.creatIssue(this.issueForm.getRawValue() as Issue);
     this.formClose.emit();
+  }
+
+  ngOnInit(): void {
+    this.issueForm.controls.title.valueChanges.subscribe(title => {
+      this.suggestions = this.issueService.getSuggestions(title);
+    });
   }
 
 }
