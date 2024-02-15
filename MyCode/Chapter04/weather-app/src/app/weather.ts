@@ -2,7 +2,7 @@ export interface Weather {
     weather: WeatherInfo[],
     main: {
         temp: number;
-        pressue: number;
+        pressure: number;
         humidity: number;
     };
     wind: {

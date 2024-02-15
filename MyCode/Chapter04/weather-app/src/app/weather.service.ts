@@ -6,8 +6,10 @@ import { Weather } from './weather';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class WeatherService {
-  private apiUrl = 'https://api.openweathermap.org/data/2.5';
+  private apiUrl = 'https://api.openweathermap.org/data/2.5/';
   private apiKey = '25af527a4f606ffdde0e9af417c21eff';
 
   constructor(private httpClient: HttpClient) { }
