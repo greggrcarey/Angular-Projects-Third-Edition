@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { ChangeDetectionStrategy, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Weather } from './weather';
+import { Forecast } from './forecast';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,14 @@ export class WeatherService {
       .set('appId', this.apiKey);
     return this.httpClient.get<Weather>(this.apiUrl + 'weather', { params: options });
 
+  }
+
+  getForecast(city: string): Observable<Forecast> {
+    const options = new HttpParams()
+      .set('units', 'metric')
+      .set('q', city)
+      .set('appId', this.apiKey);
+    return this.httpClient.get<Forecast>(this.apiUrl + 'forecast', { params: options });
   }
 
 
